@@ -18,10 +18,18 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
 	return [
+		'uuid' => $faker->uuid,
 		'name' => $faker->name,
-		'email' => $faker->unique()->safeEmail,
-		'email_verified_at' => now(),
-		'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-		'remember_token' => Str::random(10),
+		'join_date' => $faker->date(),
+		'discord_id' => $faker->randomElement(['Arend#', 'Ford#', 'Farcry#', ]) . $faker->numerify('####'),
+		'discord_access_token' => Str::random(10),
+		'avatar_resource_id' => $faker->unique()->randomDigit,
+		'date_of_birth' => $faker->date(),
+		'country' => $faker->numerify('###'),
+		'timezone' => $faker->numerify('UTC+##:##'),
+		'data' => $faker->json(),
+		'status_id' => $faker->unique()->randomDigit,
+		'rank_id' => $faker->unique()->randomDigit,
+		'user_qualification_id' => $faker->unique()->randomDigit,
 	];
 });

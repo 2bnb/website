@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Auditable
 {
-	use Notifiable;
+	use HasApiTokens, Notifiable, \OwenIt\Auditing\Auditable;
 
 	/**
 	 * The attributes that are mass assignable.
@@ -16,7 +18,9 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $fillable = [
-		'name', 'email', 'password',
+		'name', 'join_date', 'discord_id', 'discord_access_token',
+		'avatar_resource_id', 'date_of_birth', 'country', 'timezone',
+		'data', 'status_id', 'rank_id', 'qualification_id',
 	];
 
 	/**
@@ -25,7 +29,7 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $hidden = [
-		'password', 'remember_token',
+		'discord_access_token',
 	];
 
 	/**
@@ -34,6 +38,39 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $casts = [
-		'email_verified_at' => 'datetime',
+		'data' => 'array',
 	];
+
+	/**
+	 * Don't allow incrememnting since we're using uuids
+	 *
+	 * @var boolean
+	 */
+	public $incrementing = false;
+
+	/**
+	 * The primary key column name
+	 *
+	 * @var  string
+	 */
+	protected $primaryKey = 'uuid';
+
+	/**
+	 * Auto-generate and fill the uuid field
+	 */
+	protected static function boot()
+	{
+		parent::boot();
+		static::creating(function ($user) {
+			$user->{$user->getKeyName()} = (string) Str::uuid();
+		});
+	}
+
+	/**
+	 * Force keytype to string since it's a uuid not an id
+	 */
+	public function getKeyType()
+	{
+		return 'string';
+	}
 }
