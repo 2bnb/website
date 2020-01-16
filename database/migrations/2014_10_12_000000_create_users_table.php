@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('discord_access_token')->nullable();
             $table->integer('avatar_resource_id')->unsigned()->nullable();
             $table->date('date_of_birth');
-            $table->smallInteger('country')->unsigned()->zerofill()->nullable()->default('Earth');
+            $table->smallInteger('country')->unsigned()->zerofill()->nullable();
             $table->string('timezone', 9)->default('UTC+00:00');
             $table->json('data')->default(new Expression('(JSON_ARRAY())'));
             $table->integer('rank_id')->unsigned()->nullable();
