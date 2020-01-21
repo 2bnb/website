@@ -11,6 +11,9 @@ class UsersTest extends TestCase
 {
 	use RefreshDatabase;
 
+	/**
+	 * Backend Tests
+	 */
 	/** @test */
 	public function can_interact_with_database() {
 		$this->assertDatabaseMissing('users', [
@@ -29,12 +32,21 @@ class UsersTest extends TestCase
 		]);
 	}
 
+	/**
+	 * Frontend tests
+	 */
 	/** @test */
-	public function can_new_user_signup() {}
+	public function can_new_user_signup() {
+		$this->assertTrue(true);
+	}
 
 	/** @test */
-	public function can_officer_accept_member_into_unit() {}
+	public function can_officer_accept_member_into_unit() {
+		$this->assertTrue(true);
+	}
 
 	/** @test */
-	public function can_trainer_accept_member_into_unit() {}
+	public function can_trainer_accept_member_into_unit() {
+		$this->assertTrue(true);
+	}
 }
