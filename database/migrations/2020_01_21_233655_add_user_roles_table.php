@@ -15,7 +15,7 @@ class AddUserRolesTable extends Migration
     {
         Schema::create('user_roles', function (Blueprint $table) {
             $table->uuid('user_uuid');
-            $table->unsignedInteger('role_id');
+            $table->unsignedBigInteger('role_id');
             $table->timestamps();
 
             $table->primary(['user_uuid', 'role_id']);
@@ -32,6 +32,8 @@ class AddUserRolesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('user_roles');
+        Schema::enableForeignKeyConstraints();
     }
 }

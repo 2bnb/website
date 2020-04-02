@@ -14,11 +14,11 @@ class AddRolesTable extends Migration
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('icon_id')->unsigned()->nullable();
-            $table->bigInteger('discord_role_id')->unsigned()->nullable();
+            $table->bigIncrements('id');
+            $table->unsignedInteger('icon_id')->nullable();
+            $table->unsignedBigInteger('discord_role_id')->nullable();
             $table->string('name');
-            $table->text('description')->default('');
+            $table->text('description');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +31,8 @@ class AddRolesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('roles');
+        Schema::enableForeignKeyConstraints();
     }
 }

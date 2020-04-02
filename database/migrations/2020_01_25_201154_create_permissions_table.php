@@ -14,10 +14,10 @@ class CreatePermissionsTable extends Migration
     public function up()
     {
         Schema::create('permissions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('type');
             $table->string('model');
-            $table->text('description')->default('');
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -29,6 +29,8 @@ class CreatePermissionsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('permissions');
+        Schema::enableForeignKeyConstraints();
     }
 }
