@@ -31,7 +31,7 @@ $factory->state(Config::class, 'values', function (Faker $faker) {
 			'{"Qualification","Award"}',
 			'EUR',
 			'{"Operation","Training","Mini-op"}',
-			'{"Blog","Annoucement"}'
+			'{"Blog","Announcement"}'
 		])
 	];
 });
