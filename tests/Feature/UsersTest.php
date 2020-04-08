@@ -12,7 +12,7 @@ class UsersTest extends TestCase
 	use RefreshDatabase;
 
 	/**
-	 * Backend Tests
+	 * Backend tests
 	 */
 	/** @test */
 	public function can_interact_with_database() {
@@ -30,6 +30,19 @@ class UsersTest extends TestCase
 		$this->assertDatabaseHas('users', [
 			'country' => $users->first()['country']
 		]);
+	}
+
+	/**
+	 * API test
+	 */
+	/** @test */
+	public function can_api_add_new_user() {
+		$user = factory(User::class)->make()->toArray();
+		$response = $this->json('POST', '/users', $user);
+
+		$response
+			->assertStatus(201)
+			->assertJson(['created' => true]);
 	}
 
 	/**
