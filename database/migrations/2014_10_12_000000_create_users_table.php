@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->date('date_of_birth');
             $table->smallInteger('country')->unsigned()->zerofill()->nullable();
             $table->string('timezone', 9)->default('UTC+00:00');
-            $table->json('data')->default(new Expression('(JSON_ARRAY())'));
+            $table->json('data');
             $table->integer('rank_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -38,6 +38,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('users');
+        Schema::enableForeignKeyConstraints();
     }
 }

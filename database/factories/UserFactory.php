@@ -30,7 +30,7 @@ $factory->state(User::class, 'full', function (Faker $faker) {
 		'uuid' => $faker->uuid,
 		'name' => $faker->name,
 		'join_date' => $faker->date(),
-		'discord_id' => $faker->randomElement(['Arend#', 'Ford#', 'Farcry#', ]) . $faker->numerify('####'),
+		'discord_id' => $faker->randomElement(['Arend#', 'Ford#', 'Farcry#', 'Human#']) . $faker->numerify('####'),
 		'discord_access_token' => Str::random(10),
 		'avatar_resource_id' => $faker->unique()->randomNumber,
 		'date_of_birth' => $faker->date(),
@@ -50,7 +50,7 @@ $factory->state(User::class, 'full', function (Faker $faker) {
 				'Good kid, though a bit young',
 				'intelligent guy, willing to learn a lot',
 				'Maximus 2.0',
-				'You could hit this guy with a sledghammer and he\'d smile back'
+				'You could hit this guy with a sledgehammer and he\'d smile back'
 			]),
 			'steam_id' => $faker->randomNumber(),
 			'language' => $faker->languageCode,
