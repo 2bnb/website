@@ -18,7 +18,7 @@ class AddRolesTable extends Migration
             $table->unsignedInteger('icon_id')->nullable();
             $table->unsignedBigInteger('discord_role_id')->nullable();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
