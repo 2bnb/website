@@ -5,20 +5,19 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Permission;
+use App\Role;
 
-class PermissionsTest extends TestCase
+class RolesTest extends TestCase
 {
     /**
 	 * Backend tests
 	 */
 	/** @test */
 	public function can_interact_with_database() {
-		$permissions = factory(Permission::class, 4)->create();
+		$roles = factory(Role::class, 3)->create();
 
-		$this->assertDatabaseHas('permissions', [
-			'model' => $permissions->first()['model'],
-			'type' => $permissions->first()['type']
+		$this->assertDatabaseHas('roles', [
+			'name' => $roles->first()['name']
 		]);
 	}
 }
