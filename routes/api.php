@@ -15,6 +15,3 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->prefix('api')->group(function() {
 });
-	// Route::apiResources([
-	// 	'UserController'
-	// ]);
