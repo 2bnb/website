@@ -14,11 +14,29 @@ class PermissionsTest extends TestCase
 	 */
 	/** @test */
 	public function can_interact_with_database() {
-		$permissions = factory(Permission::class, 4)->create();
+		$permission = factory(Permission::class)->create();
+		$originalValues = $permission->toArray();
 
 		$this->assertDatabaseHas('permissions', [
-			'model' => $permissions->first()['model'],
-			'type' => $permissions->first()['type']
+			'model' => $permission->model,
+			'type' => $permission->type
+		]);
+
+		$permission->model = 'App/TestModel';
+		$permission->save();
+
+		$this->assertDatabaseMissing('permissions', $originalValues);
+
+		$this->assertDatabaseHas('permissions', [
+			'model' => $permission->model,
+			'type' => $permission->type
+		]);
+
+		$permission->delete();
+
+		$this->assertSoftDeleted('permissions', [
+			'model' => $permission->model,
+			'type' => $permission->type
 		]);
 	}
 }

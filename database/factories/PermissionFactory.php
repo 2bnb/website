@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Permission::class, function (Faker $faker) {
     return [
-		'model' => $faker->randomElement(['App/Test', 'App/FakeModel', 'App/TestModel']),
+		'model' => $faker->randomElement(['App/Test', 'App/FakeModel']),
 		'type' => $faker->randomElement(['edit', 'create', 'delete', 'view'])
     ];
 });
