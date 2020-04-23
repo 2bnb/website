@@ -21,6 +21,6 @@ class BotLog extends Model
      * @var  array
      */
     protected $attributes = [
-		'data' => 'did something, so I am logging it',
+		'data' => '{"message": "This bot did something, so I am logging it"}',
 	];
 }
