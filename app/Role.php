@@ -5,9 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Passport\HasApiTokens;
 class Role extends Model implements Auditable
 {
-    use \OwenIt\Auditing\Auditable, SoftDeletes;
+    use \OwenIt\Auditing\Auditable, SoftDeletes, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
