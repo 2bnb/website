@@ -22,8 +22,21 @@ class PermissionsTest extends TestCase
 			'type' => $permission->type
 		]);
 
+		$permission->model = 'App/TestModel';
+		$permission->save();
+
+		$this->assertDatabaseMissing('permissions', $originalValues);
+
+		$this->assertDatabaseHas('permissions', [
+			'model' => $permission->model,
+			'type' => $permission->type
+		]);
+
 		$permission->delete();
 
-		$this->assertSoftDeleted('permissions', $originalValues);
+		$this->assertSoftDeleted('permissions', [
+			'model' => $permission->model,
+			'type' => $permission->type
+		]);
 	}
 }
