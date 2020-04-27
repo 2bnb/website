@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(BotLog::class, function (Faker $faker) {
     return [
-        'data' => '{"message": "'.$faker->sentence().'"}'
+		'bot_uuid' => factory(App\Bot::class),
+        'data' => '{"message": "'.$faker->sentence.'"}'
     ];
 });
