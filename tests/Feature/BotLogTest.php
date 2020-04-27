@@ -55,6 +55,4 @@ class BotLogTest extends TestCase
 			'data' => $this->castToJson($bot_log->data)
 		]);
 	}
-
-
 }
