@@ -14,3 +14,9 @@
 Route::get('/', function () {
 	return view('welcome');
 });
+
+Route::resources([
+	'users' => 'API\UserController',
+	'roles' => 'Auth\RoleController',
+	'permissions' => 'Auth\PermissionController',
+]);
