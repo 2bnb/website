@@ -11,7 +11,7 @@
 		"php": "^7.2",
 		"fideloper/proxy": "^4.0",
 		"laravel/framework": "^6.0",
-		"laravel/passport": "^8.0",
+		"laravel/passport": "^8.4",
 		"laravel/tinker": "^1.0",
 		"owen-it/laravel-auditing": "^9.3",
 		"spatie/laravel-activitylog": "^3.9"
