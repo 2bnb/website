@@ -30,7 +30,7 @@ class RoleAndPermissionsSeeder extends Seeder
 
 		foreach ($permissions as $permission) {
 			foreach ($types as $type) {
-				DB::table('permissions')->insert([
+				Permission::create([
 					'model' => $permission,
 					'type' => $type
 				]);
