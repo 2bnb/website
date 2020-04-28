@@ -12,7 +12,8 @@ class BotLog extends Model
      * @var array
      */
     protected $fillable = [
-        'data',
+		'data',
+		'bot_uuid'
     ];
 
     /**
@@ -21,6 +22,7 @@ class BotLog extends Model
      * @var  array
      */
     protected $attributes = [
+		'bot_uuid' => '',
 		'data' => '{"message": "This bot did something, so I am logging it"}',
 	];
 }

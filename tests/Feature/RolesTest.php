@@ -19,7 +19,7 @@ class RolesTest extends TestCase
 		$originalValues = $testRole->toArray();
 
 		$this->assertDatabaseHas('roles', [
-			'name' => $roles->first()['name']
+			'name' => $testRole->name
 		]);
 
 		$testRole->name = 'TEST-ROLE';
