@@ -2,4 +2,13 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
+@import '_variables';
+
+body {
+	color: $green;
+}
+
+.app-header.theme--light.v-app-bar.v-toolbar.v-sheet {
+  background-color: $light;
+  opacity: 0.87;
+}

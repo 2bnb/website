@@ -1,9 +1,7 @@
 <template>
   <v-app>
     <Header />
-    <v-content>
-      <HelloWorld />
-    </v-content>
+    <v-content></v-content>
   </v-app>
 </template>
 

@@ -1,13 +1,5 @@
-<style lang="scss" scoped>
-@import "../../../sass/_variables";
-.theme--light.v-app-bar.v-toolbar.v-sheet {
-  background-color: $light;
-  opacity: 0.87;
-}
-</style>
-
 <template>
-  <v-app-bar app>
+  <v-app-bar app class="app-header">
     <div class="d-flex align-center">
       <v-img alt="2BNB Logo" class="shrink mr-2" contain src="images/2bnb-logo.png" width="40" />
       <span class="mr-1">2nd Brigade Nord Battalion</span>
@@ -31,7 +23,7 @@ export default {
   },
 
   data: () => ({
-    color: $light
+    //
   })
 };
 </script>
