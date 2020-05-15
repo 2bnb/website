@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-	return view('welcome');
-});
-
 Route::resources([
 	'users' => 'API\UserController',
 	'roles' => 'Auth\RoleController',
 	'permissions' => 'Auth\PermissionController',
 ]);
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
