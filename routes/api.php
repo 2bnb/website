@@ -14,10 +14,10 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->prefix('api')->group(function() {
-	Route::apiResources([
-	'users' => 'API\UserController',
-	'bots' => 'API\BotController',
-	'roles' => 'Auth\RoleController',
-	'permissions' => 'Auth\PermissionController',
-]);
+		Route::apiResources([
+		'users' => 'API\UserController',
+		'bots' => 'API\BotController',
+		'roles' => 'Auth\RoleController',
+		'permissions' => 'Auth\PermissionController',
+	]);
 });
