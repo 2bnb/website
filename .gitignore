@@ -1,6 +1,5 @@
 /node_modules
-/public/hot
-/public/storage
+/public
 /storage/*.key
 /vendor
 .env
@@ -11,3 +10,4 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 2bnb-website.sublime-project
+.DS_Store
