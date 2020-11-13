@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRolePermissionsTable extends Migration
+class CreateUserRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class AddRolePermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_permissions', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('permission_id');
+        Schema::create('user_roles', function (Blueprint $table) {
+            $table->uuid('user_uuid');
+            $table->foreignId('role_id');
+            $table->timestamps();
 
-            $table->primary(['role_id', 'permission_id']);
+            $table->primary(['user_uuid', 'role_id']);
 
+            $table->foreign('user_uuid')->references('uuid')->on('users');
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->foreign('permission_id')->references('id')->on('permissions');
         });
     }
 
@@ -32,7 +33,7 @@ class AddRolePermissionsTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('role_permissions');
+        Schema::dropIfExists('user_roles');
         Schema::enableForeignKeyConstraints();
     }
 }

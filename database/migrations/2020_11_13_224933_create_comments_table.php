@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddBotsTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class AddBotsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bots', function (Blueprint $table) {
-			$table->uuid('uuid')->primary();
-			$table->string('name');
-            $table->text('description')->nullable();
-            $table->json('attributes')->nullable();
+        Schema::create('comments', function (Blueprint $table) {
+			$table->id();
+			$table->text('text');
+			$table->foreignId('commentable_id');
+			$table->string('commentable_type');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,8 +30,8 @@ class AddBotsTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-		Schema::dropIfExists('bots');
-		Schema::enableForeignKeyConstraints();
+		Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('comments');
+        Schema::enableForeignKeyConstraints();
     }
 }

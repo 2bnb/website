@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class AddUserRolesTable extends Migration
+class CreateUserAwardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class AddUserRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_roles', function (Blueprint $table) {
+        Schema::create('user_awards', function (Blueprint $table) {
             $table->uuid('user_uuid');
-            $table->unsignedBigInteger('role_id');
+            $table->foreignId('award_id');
             $table->timestamps();
 
-            $table->primary(['user_uuid', 'role_id']);
+            $table->primary(['user_uuid', 'award_id']);
 
             $table->foreign('user_uuid')->references('uuid')->on('users');
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('award_id')->references('id')->on('awards');
         });
     }
 
@@ -32,8 +32,8 @@ class AddUserRolesTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('user_roles');
+		Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('user_awards');
         Schema::enableForeignKeyConstraints();
     }
 }

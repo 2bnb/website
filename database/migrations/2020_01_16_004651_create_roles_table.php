@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRolesTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,9 +16,10 @@ class AddRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('icon_id')->nullable();
-            $table->unsignedBigInteger('discord_role_id')->nullable();
+            $table->string('discord_role_id')->nullable();
             $table->string('name');
-            $table->text('description')->nullable();
+			$table->text('description')->nullable();
+			$table->integer('position')->default(0)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
