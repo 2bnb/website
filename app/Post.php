@@ -16,10 +16,15 @@ class Post extends Model implements Auditable
      * @var array
      */
     protected $fillable = [
-		'donator_uuid',
+		'name',
 		'description',
-		'amount',
-		'paypal_transaction_id',
+		'author_uuid',
+		'minimum_role_to_view',
+		'type',
+		'custom_attributes',
+		'allow_comments',
+		'freeze_comments',
+		'published_at'
     ];
 
     /**
@@ -28,9 +33,14 @@ class Post extends Model implements Auditable
      * @var array
      */
     protected $attributes = [
-		'donator_uuid' => null,
+		'name' => null,
 		'description' => null,
-		'amount' => 0.00,
-        'paypal_transaction_id' => null,
+        'author_uuid' => null,
+        'minimum_role_to_view' => null,
+        'type' => null,
+        'custom_attributes' => null,
+        'allow_comments' => null,
+        'freeze_comments' => null,
+        'published_at' => null,
     ];
 }
