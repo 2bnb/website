@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->smallInteger('country')->unsigned()->zerofill()->nullable();
             $table->string('timezone', 9)->default('UTC+00:00');
             $table->json('data');
-            $table->integer('rank_id')->unsigned()->nullable();
+            $table->foreignId('rank_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
