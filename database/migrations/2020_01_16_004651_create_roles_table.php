@@ -14,14 +14,14 @@ class CreateRolesTable extends Migration
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedInteger('icon_id')->nullable();
-            $table->string('discord_role_id')->nullable();
+			$table->id();
             $table->string('name');
+            $table->foreignId('icon_id')->nullable();
+            $table->string('discord_role_id')->nullable();
 			$table->text('description')->nullable();
 			$table->integer('position')->default(0)->nullable();
             $table->timestamps();
-            $table->softDeletes();
+			$table->softDeletes();
         });
     }
 

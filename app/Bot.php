@@ -27,6 +27,7 @@ class Bot extends Model
      * @var  array
      */
     protected $attributes = [
+		'name' => null,
 		'description' => '',
 		'attributes' => '{}'
 	];

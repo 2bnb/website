@@ -20,6 +20,7 @@ class Role extends Model implements Auditable
         'icon_id',
         'discord_role_id',
         'description',
+        'position',
     ];
 
     /**
@@ -31,7 +32,8 @@ class Role extends Model implements Auditable
         'name' => null,
         'icon_id' => null,
         'discord_role_id' => null,
-        'description' => ''
+        'description' => '',
+        'position' => 0,
 	];
 
 	public function permissions()
