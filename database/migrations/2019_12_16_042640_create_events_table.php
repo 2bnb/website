@@ -22,6 +22,7 @@ class CreateEventsTable extends Migration
             $table->timestamp('start_time')->default(new Expression('NOW()'));
             $table->timestamp('end_time')->default(new Expression('NOW()'));
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -32,7 +33,7 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-		Schema::disableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('events');
         Schema::enableForeignKeyConstraints();
     }

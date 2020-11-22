@@ -11,10 +11,12 @@
 |
 */
 
+// until the front end exists these are useful for testing
+// TODO: remove after testing
 Route::resources([
-	'users' => 'API\UserController',
-	'roles' => 'Auth\RoleController',
-	'permissions' => 'Auth\PermissionController',
+    'users' => 'API\UserController',
+    'roles' => 'Auth\RoleController',
+    'permissions' => 'Auth\PermissionController',
 ]);
 
 Auth::routes();
