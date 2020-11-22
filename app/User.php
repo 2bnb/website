@@ -126,5 +126,15 @@ class User extends Authenticatable implements Auditable
     public function absences()
     {
         return $this->hasMany('App\Absence', 'user_uuid', 'uuid');
-    }
+	}
+
+	/**
+	 * Get the rank of this user
+	 *
+	 * @return void
+	 */
+	public function rank()
+	{
+		return $this->belongsTo('App\Rank');
+	}
 }
