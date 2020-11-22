@@ -147,4 +147,14 @@ class User extends Authenticatable implements Auditable
 	{
 		return $this->belongsToMany('App\Award', 'user_awards', 'user_uuid', 'award_id', 'uuid');
 	}
+
+	/**
+	 * Get all event slots for this user
+	 *
+	 * @return void
+	 */
+	public function event_slots()
+	{
+		return $this->hasMany('App\EventSlot', 'user_uuid', 'uuid');
+	}
 }

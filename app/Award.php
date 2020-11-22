@@ -81,4 +81,14 @@ class Award extends Model implements Auditable
 	{
 		return $this->belongsToMany('App\User', 'user_awards', 'award_id', 'user_uuid', 'id', 'uuid');
 	}
+
+	/**
+	 * Get slots that require this award
+	 *
+	 * @return void
+	 */
+	public function slots()
+	{
+		return $this->belongsToMany('App\Slot', 'slot_requirements', 'requirement_id', 'slot_id');
+	}
 }

@@ -10,6 +10,13 @@ class EventSlot extends Model implements Auditable
 {
 	use \OwenIt\Auditing\Auditable, SoftDeletes;
 
+	/**
+	 * The attributes that should be mutated to dates.
+	 *
+	 * @var array
+	 */
+	protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -32,5 +39,38 @@ class EventSlot extends Model implements Auditable
         'username' => null,
 		'slot_id' => null,
 		'event_slot_group_id' => null,
-    ];
+	];
+
+	/**
+	 * Get the user that has signed up for this slot
+	 *
+	 * @return void
+	 */
+	public function user()
+	{
+		if ($this->user_uuid !== null) {
+			return $this->belongsTo('App\User', 'uuid', 'user_uuid');
+		}
+		return $this->username;
+	}
+
+	/**
+	 * Get the group for this slot
+	 *
+	 * @return void
+	 */
+	public function event_slot_group()
+	{
+		return $this->belongsTo('App\EventSlotGroup');
+	}
+
+	/**
+	 * Get the actual slot that this event is using
+	 *
+	 * @return void
+	 */
+	public function slot()
+	{
+		return $this->belongsTo('App\Slot');
+	}
 }
