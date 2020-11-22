@@ -137,4 +137,14 @@ class User extends Authenticatable implements Auditable
 	{
 		return $this->belongsTo('App\Rank');
 	}
+
+	/**
+	 * Get the awards that this user has
+	 *
+	 * @return void
+	 */
+	public function awards()
+	{
+		return $this->belongsToMany('App\Award', 'user_awards', 'user_uuid', 'award_id', 'uuid');
+	}
 }
