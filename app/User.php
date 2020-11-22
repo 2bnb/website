@@ -103,9 +103,21 @@ class User extends Authenticatable implements Auditable
 
     /**
      * Get all Resources uploaded by the user
+     *
+     * @return void
      */
     public function uploadedResources()
     {
         return $this->hasMany('App\Resource', 'uploader_uuid', 'uuid');
+    }
+
+    /**
+     * Get all Absences for this user
+     *
+     * @return void
+     */
+    public function absences()
+    {
+        return $this->hasMany('App\Absence', 'user_uuid', 'uuid');
     }
 }
