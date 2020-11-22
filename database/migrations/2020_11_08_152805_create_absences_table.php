@@ -20,6 +20,7 @@ class CreateAbsencesTable extends Migration
 			$table->timestamp('start');
 			$table->timestamp('end')->nullable();
 			$table->timestamps();
+			$table->softDeletes();
 
 			$table->foreign('user_uuid')->references('uuid')->on('users');
         });
