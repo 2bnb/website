@@ -177,4 +177,24 @@ class User extends Authenticatable implements Auditable
 	{
 		return $this->belongsToMany('App\Event', 'user_edit_event_permissions', 'user_uuid', 'event_id', 'uuid');
 	}
+
+	/**
+	 * Get all misbehaviours for this user
+	 *
+	 * @return void
+	 */
+	public function misbehaviours()
+	{
+		return $this->hasMany('App\Misbehaviour', 'user_uuid', 'uuid');
+	}
+
+	/**
+	 * Get all misbehaviours that this user has issued
+	 *
+	 * @return void
+	 */
+	public function issued_misbehaviours()
+	{
+		return $this->hasMany('App\Misbehaviour', 'issuer_uuid', 'uuid');
+	}
 }

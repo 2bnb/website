@@ -59,4 +59,14 @@ class Event extends Model implements Auditable
 	{
 		return $this->belongsToMany('App\User', 'user_edit_event_permissions', 'post_id', 'user_uuid');
 	}
+
+	/**
+	 * Get all misbehaviours recorded for this event
+	 *
+	 * @return void
+	 */
+	public function misbehaviours()
+	{
+		return $this->hasMany('App\Misbehaviour');
+	}
 }
