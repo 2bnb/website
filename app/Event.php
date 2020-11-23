@@ -49,4 +49,14 @@ class Event extends Model implements Auditable
 	{
 		return $this->hasMany('App\EventSlotGroup');
 	}
+
+	/**
+	 * Get all users that can edit this event
+	 *
+	 * @return void
+	 */
+	public function users_that_can_edit()
+	{
+		return $this->belongsToMany('App\User', 'user_edit_event_permissions', 'post_id', 'user_uuid');
+	}
 }

@@ -157,4 +157,24 @@ class User extends Authenticatable implements Auditable
 	{
 		return $this->hasMany('App\EventSlot', 'user_uuid', 'uuid');
 	}
+
+	/**
+	 * Get all the posts that this user can edit
+	 *
+	 * @return void
+	 */
+	public function editable_posts()
+	{
+		return $this->belongsToMany('App\Post', 'user_edit_post_permissions', 'user_uuid', 'post_id', 'uuid');
+	}
+
+	/**
+	 * Get all the events that this user can edit
+	 *
+	 * @return void
+	 */
+	public function editable_events()
+	{
+		return $this->belongsToMany('App\Event', 'user_edit_event_permissions', 'user_uuid', 'event_id', 'uuid');
+	}
 }

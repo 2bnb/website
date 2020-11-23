@@ -10,6 +10,13 @@ class Misbehaviour extends Model implements Auditable
 {
 	use \OwenIt\Auditing\Auditable, SoftDeletes;
 
+	/**
+	 * The attributes that should be mutated to dates.
+	 *
+	 * @var array
+	 */
+	protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
     /**
      * The attributes that are mass assignable.
      *
