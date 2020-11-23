@@ -15,7 +15,8 @@
 		"laravel/tinker": "^2.0",
 		"laravel/ui": "^2.0",
 		"owen-it/laravel-auditing": "^11.0",
-		"spatie/laravel-activitylog": "^3.9"
+		"spatie/laravel-activitylog": "^3.9",
+		"symfony/process": "^5.1"
 	},
 	"require-dev": {
 		"facade/ignition": "^2.0",
