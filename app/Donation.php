@@ -10,6 +10,13 @@ class RankGroup extends Model implements Auditable
 {
 	use \OwenIt\Auditing\Auditable, SoftDeletes;
 
+	/**
+	 * The attributes that should be mutated to dates.
+	 *
+	 * @var array
+	 */
+	protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -32,5 +39,16 @@ class RankGroup extends Model implements Auditable
 		'description' => null,
 		'amount' => 0.00,
         'paypal_transaction_id' => null,
-    ];
+	];
+
+
+	/**
+	 * Get user who donated
+	 *
+	 * @return void
+	 */
+	public function donator()
+	{
+		return $this->belongsTo('App\User', 'uuid', 'donator_uuid');
+	}
 }
