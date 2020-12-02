@@ -10,6 +10,13 @@ class Comment extends Model implements Auditable
 {
 	use \OwenIt\Auditing\Auditable, SoftDeletes;
 
+	/**
+	 * The attributes that should be mutated to dates.
+	 *
+	 * @var array
+	 */
+	protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -30,5 +37,13 @@ class Comment extends Model implements Auditable
 		'text' => null,
 		'commentable_id' => null,
         'commentable_type' => null,
-    ];
+	];
+
+	/**
+     * Get the owning commentable model.
+     */
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
 }

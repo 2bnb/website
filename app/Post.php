@@ -80,4 +80,12 @@ class Post extends Model implements Auditable
 	{
 		return $this->belongsToMany('App\User', 'user_edit_post_permissions', 'post_id', 'user_uuid');
 	}
+
+	/**
+     * Get all of the post's comments.
+     */
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
 }
