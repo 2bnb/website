@@ -24,9 +24,11 @@ class Award extends Model implements Auditable
      */
     protected $fillable = [
 		'name',
+		'award_type_id',
 		'description',
-		'type',
+		'document_link',
 		'icon_id',
+		'owner_uuid'
     ];
 
     /**
@@ -37,15 +39,28 @@ class Award extends Model implements Auditable
     protected $attributes = [
 		'name' => null,
         'description' => '',
-        'type' => null,
-        'icon_id' => null,
+		'icon_id' => null,
+		'award_type_id' => null,
+		'document_link' => null,
+		'icon_id' => null,
+		'owner_uuid' => null,
 	];
+
+	/**
+	 * Get the type of this award
+	 *
+	 * @return App\AwardType
+	 */
+	public function award_type()
+	{
+		return $this->belongsTo('App\AwardType');
+	}
 
 
 	/**
 	 * Get the icon for this award
 	 *
-	 * @return void
+	 * @return App\Resource
 	 */
 	public function icon()
 	{
@@ -55,7 +70,7 @@ class Award extends Model implements Auditable
 	/**
 	 * Get the requirements for this award
 	 *
-	 * @return void
+	 * @return App\Award
 	 */
 	public function requirements()
 	{
@@ -65,7 +80,7 @@ class Award extends Model implements Auditable
 	/**
 	 * Get awards that have this award as a requirement
 	 *
-	 * @return void
+	 * @return App\Award
 	 */
 	public function awards_where_is_requirement()
 	{
@@ -75,7 +90,7 @@ class Award extends Model implements Auditable
 	/**
 	 * Get the users that have this award
 	 *
-	 * @return void
+	 * @return App\User
 	 */
 	public function users()
 	{
@@ -85,7 +100,7 @@ class Award extends Model implements Auditable
 	/**
 	 * Get slots that require this award
 	 *
-	 * @return void
+	 * @return App\Slot
 	 */
 	public function slots()
 	{
