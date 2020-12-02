@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Passport\HasApiTokens;
+
 class Role extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable, SoftDeletes, HasApiTokens;
@@ -36,8 +37,34 @@ class Role extends Model implements Auditable
         'position' => 0,
 	];
 
+	/**
+	 * Get all permissions that this role has
+	 *
+	 * @return void
+	 */
 	public function permissions()
 	{
 		return $this->belongsToMany(Permission::class, 'role_permissions', 'role_id');
+	}
+
+
+	/**
+	 * Get all users that have this role
+	 *
+	 * @return void
+	 */
+	public function users()
+	{
+		return $this->belongsToMany('App\User', 'user_roles', 'role_id', 'user_uuid');
+	}
+
+	/**
+	 * Get all posts that require this role (minimum)
+	 *
+	 * @return void
+	 */
+	public function posts_that_require_role()
+	{
+		return $this->hasMany('App\Post', 'minimum_role_to_view');
 	}
 }

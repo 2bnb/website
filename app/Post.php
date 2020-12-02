@@ -52,6 +52,26 @@ class Post extends Model implements Auditable
 	];
 
 	/**
+	 * Get author of the post
+	 *
+	 * @return App\User
+	 */
+	public function author()
+	{
+		return $this->belongsTo('App\User', 'uuid', 'author_uuid');
+	}
+
+	/**
+	 * Get minimum role required to view this post
+	 *
+	 * @return App\Role
+	 */
+	public function minimum_role_to_view()
+	{
+		return $this->belongsTo('App\Role', 'id', 'minimum_role_to_view');
+	}
+
+	/**
 	 * Get all users that can edit this post
 	 *
 	 * @return void

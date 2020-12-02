@@ -207,4 +207,25 @@ class User extends Authenticatable implements Auditable
     {
         return $this->hasMany('App\Donation', 'donator_uuid', 'uuid');
 	}
+
+    /**
+     * Get all Posts that this user created
+     *
+     * @return void
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\Post', 'author_uuid', 'uuid');
+	}
+
+
+	/**
+	 * Get all the roles that this user has
+	 *
+	 * @return void
+	 */
+	public function roles()
+	{
+		return $this->belongsToMany('App\Role', 'user_roles', 'user_uuid', 'role_id', 'uuid');
+	}
 }
