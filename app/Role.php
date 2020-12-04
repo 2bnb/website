@@ -9,7 +9,14 @@ use Laravel\Passport\HasApiTokens;
 
 class Role extends Model implements Auditable
 {
-    use \OwenIt\Auditing\Auditable, SoftDeletes, HasApiTokens;
+	use \OwenIt\Auditing\Auditable, SoftDeletes, HasApiTokens;
+
+	/**
+	 * The attributes that should be mutated to dates.
+	 *
+	 * @var array
+	 */
+	protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -36,6 +43,16 @@ class Role extends Model implements Auditable
         'description' => '',
         'position' => 0,
 	];
+
+	/**
+	 * Get the icon for this role
+	 *
+	 * @return void
+	 */
+	public function icon()
+	{
+		return $this->belongsTo('App\Resource', 'icon_id');
+	}
 
 	/**
 	 * Get all permissions that this role has
