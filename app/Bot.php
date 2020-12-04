@@ -64,5 +64,15 @@ class Bot extends Model
     public function getKeyType()
     {
         return 'string';
-    }
+	}
+
+	/**
+	 * Get all logs for this bot
+	 *
+	 * @return void
+	 */
+	public function logs()
+	{
+		return $this->hasMany('App\BotLog', 'bot_uuid', 'uuid');
+	}
 }

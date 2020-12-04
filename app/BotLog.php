@@ -25,4 +25,15 @@ class BotLog extends Model
 		'bot_uuid' => '',
 		'data' => '{"message": "This bot did something, so I am logging it"}',
 	];
+
+
+	/**
+	 * Get bot for this log
+	 *
+	 * @return void
+	 */
+	public function bot()
+	{
+		return $this->belongsTo('App\Bot', 'uuid', 'bot_uuid');
+	}
 }
