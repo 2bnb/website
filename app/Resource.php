@@ -48,6 +48,6 @@ class Resource extends Model implements Auditable
 	 */
 	public function uploader()
 	{
-		return $this->belongsTo('App\User', 'uuid', 'uploader_uuid');
+		return $this->belongsTo('App\User', 'uploader_uuid', 'uuid');
 	}
 }

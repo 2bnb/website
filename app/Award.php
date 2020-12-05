@@ -106,4 +106,13 @@ class Award extends Model implements Auditable
 	{
 		return $this->belongsToMany('App\Slot', 'slot_requirements', 'requirement_id', 'slot_id');
 	}
+
+	/**
+	 * Get all qualifications that relate to this award
+	 *
+	 * @return void
+	 */
+	public function qualifications() {
+		return $this->hasMany('App\Qualification');
+	}
 }

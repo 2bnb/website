@@ -58,7 +58,7 @@ class Post extends Model implements Auditable
 	 */
 	public function author()
 	{
-		return $this->belongsTo('App\User', 'uuid', 'author_uuid');
+		return $this->belongsTo('App\User', 'author_uuid', 'uuid');
 	}
 
 	/**
@@ -68,7 +68,7 @@ class Post extends Model implements Auditable
 	 */
 	public function minimum_role_to_view()
 	{
-		return $this->belongsTo('App\Role', 'id', 'minimum_role_to_view');
+		return $this->belongsTo('App\Role', 'minimum_role_to_view');
 	}
 
 	/**

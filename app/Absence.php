@@ -48,6 +48,6 @@ class Absence extends Model implements Auditable
 	 */
 	public function user()
 	{
-		return $this->belongsTo('App\User', 'uuid', 'user_uuid');
+		return $this->belongsTo('App\User', 'user_uuid', 'uuid');
 	}
 }
