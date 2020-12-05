@@ -56,6 +56,15 @@ class Award extends Model implements Auditable
 		return $this->belongsTo('App\AwardType');
 	}
 
+	/**
+	 * Get the owner of this award (head trainer, or campaign owner)
+	 *
+	 * @return App\User
+	 */
+	public function supervisor()
+	{
+		return $this->belongsTo('App\User', 'owner_uuid', 'uuid');
+	}
 
 	/**
 	 * Get the icon for this award
@@ -114,5 +123,15 @@ class Award extends Model implements Auditable
 	 */
 	public function qualifications() {
 		return $this->hasMany('App\Qualification');
+	}
+
+	/**
+	 * Get the trainers for this award
+	 *
+	 * @return App\User
+	 */
+	public function trainers()
+	{
+		return $this->belongsToMany('App\User', 'trainers', 'award_id', 'user_uuid', 'id', 'uuid')->withPivot('trial');
 	}
 }
