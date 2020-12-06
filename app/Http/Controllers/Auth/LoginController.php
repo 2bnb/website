@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -36,4 +37,29 @@ class LoginController extends Controller
 	{
 		$this->middleware('guest')->except('logout');
 	}
+
+	/**
+     * Redirect the user to the Discord authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider()
+    {
+		// could get extra things here using https://discord.com/developers/docs/topics/oauth2#shared-resources-oauth2-scopes
+		// ->setScopes([])
+		return Socialite::driver('discord')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Discord
+use Laravel\Socialite\Facades\Socialite;.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('discord')->user();
+
+        // $user->token;
+    }
 }

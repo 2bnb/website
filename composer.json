@@ -12,9 +12,11 @@
 		"fideloper/proxy": "^4.0",
 		"laravel/framework": "^7.0",
 		"laravel/passport": "^9.0",
+		"laravel/socialite": "^5.1",
 		"laravel/tinker": "^2.0",
 		"laravel/ui": "^2.0",
 		"owen-it/laravel-auditing": "^11.0",
+		"socialiteproviders/discord": "^4.1",
 		"spatie/laravel-activitylog": "^3.9"
 	},
 	"require-dev": {
