@@ -6,7 +6,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class RankGroup extends Model implements Auditable
+class Donation extends Model implements Auditable
 {
 	use \OwenIt\Auditing\Auditable, SoftDeletes;
 
