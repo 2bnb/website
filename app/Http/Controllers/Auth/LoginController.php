@@ -47,7 +47,7 @@ class LoginController extends Controller
     {
 		// could get extra things here using https://discord.com/developers/docs/topics/oauth2#shared-resources-oauth2-scopes
 		// ->setScopes([])
-		return Socialite::driver('discord')->redirect();
+		return Socialite::driver('discord')->setScopes(['identify'])->redirect();
     }
 
     /**
