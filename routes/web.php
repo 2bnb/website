@@ -11,15 +11,20 @@
 |
 */
 
+// until the front end exists these are useful for testing
+// TODO: remove after testing
 Route::resources([
-	'users' => 'API\UserController',
-	'roles' => 'Auth\RoleController',
-	'permissions' => 'Auth\PermissionController',
+    'users' => 'API\UserController',
+    'roles' => 'Auth\RoleController',
+    'permissions' => 'Auth\PermissionController',
 ]);
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('login/discord', 'Auth\LoginController@redirectToProvider')->name('login');
+Route::get('login/discord/callback', 'Auth\LoginController@handleProviderCallback');
 
 // Continuous Deployment
 Route::post('deploy', 'DeployController@deploy');

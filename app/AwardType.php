@@ -2,11 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Resource extends Model implements Auditable
+class AwardType extends Model implements Auditable
 {
 	use \OwenIt\Auditing\Auditable, SoftDeletes;
 
@@ -23,11 +23,8 @@ class Resource extends Model implements Auditable
 	 * @var array
 	 */
 	protected $fillable = [
-		'name',
 		'description',
-		'type',
-		'media',
-		'uploader_uuid',
+		'name',
 	];
 
 	/**
@@ -36,18 +33,18 @@ class Resource extends Model implements Auditable
 	 * @var array
 	 */
 	protected $attributes = [
-		'name' => null,
 		'description' => '',
-		'type' => null,
-		'media' => null,
-		'uploader_uuid' => null
+		'name' => null,
 	];
 
+
 	/**
-	 * Get the user that uploaded the resource
+	 * Get all awards of this type
+	 *
+	 * @return Collection
 	 */
-	public function uploader()
+	public function awards()
 	{
-		return $this->belongsTo('App\User', 'uploader_uuid', 'uuid');
+		return $this->hasMany('App\Award');
 	}
 }

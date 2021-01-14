@@ -157,4 +157,108 @@ class User extends Authenticatable implements Auditable
 	{
 		return $this->hasMany('App\EventSlot', 'user_uuid', 'uuid');
 	}
+
+	/**
+	 * Get all the posts that this user can edit
+	 *
+	 * @return void
+	 */
+	public function editable_posts()
+	{
+		return $this->belongsToMany('App\Post', 'user_edit_post_permissions', 'user_uuid', 'post_id', 'uuid');
+	}
+
+	/**
+	 * Get all the events that this user can edit
+	 *
+	 * @return void
+	 */
+	public function editable_events()
+	{
+		return $this->belongsToMany('App\Event', 'user_edit_event_permissions', 'user_uuid', 'event_id', 'uuid');
+	}
+
+	/**
+	 * Get all misbehaviours for this user
+	 *
+	 * @return void
+	 */
+	public function misbehaviours()
+	{
+		return $this->hasMany('App\Misbehaviour', 'user_uuid', 'uuid');
+	}
+
+	/**
+	 * Get all misbehaviours that this user has issued
+	 *
+	 * @return void
+	 */
+	public function issued_misbehaviours()
+	{
+		return $this->hasMany('App\Misbehaviour', 'issuer_uuid', 'uuid');
+	}
+
+    /**
+     * Get all Donations for this user
+     *
+     * @return void
+     */
+    public function donations()
+    {
+        return $this->hasMany('App\Donation', 'donator_uuid', 'uuid');
+	}
+
+    /**
+     * Get all Posts that this user created
+     *
+     * @return void
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\Post', 'author_uuid', 'uuid');
+	}
+
+
+	/**
+	 * Get all the roles that this user has
+	 *
+	 * @return void
+	 */
+	public function roles()
+	{
+		return $this->belongsToMany('App\Role', 'user_roles', 'user_uuid', 'role_id', 'uuid');
+	}
+
+	/**
+	 * Get the qualifications this user has attended
+	 *
+	 * @return void
+	 */
+	public function qualifications()
+	{
+		return $this->belongsToMany('App\Qualification', 'qualification_attendees', 'attendee_uuid', 'qualification_id', 'uuid', 'id');
+	}
+
+	/**
+	 * Get the awards that this user can train
+	 *
+	 * returns with the pivot value of trial
+	 *
+	 * @return App\Award
+	 */
+	public function awards_can_train()
+	{
+		return $this->belongsToMany('App\Award', 'trainers', 'user_uuid', 'award_id', 'uuid', 'id')->withPivot('trial');
+	}
+
+	/**
+	 * Get all awards where user is the owner
+	 *
+	 * These are the awards where the user is head trainer, or campaign owner
+	 *
+	 * @return void
+	 */
+	public function owned_awards() {
+		return $this->hasMany('App\Award', 'owner_uuid', 'uuid');
+	}
 }
