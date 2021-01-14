@@ -21,4 +21,4 @@ php artisan migrate --database=mysql_migrator --force
 npm run production
 
 # --force  Required to run when in production. # stop maintenance mode
-php artisan up --force
+php artisan up
