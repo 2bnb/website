@@ -1,4 +1,4 @@
-#!/bin/sh# activate maintenance mode
+#!/bin/sh # activate maintenance mode
 php artisan down
 
 # update source code
@@ -12,7 +12,7 @@ composer install --no-interaction --no-dev --prefer-dist
 # --prefer-dist  Forces installation from package dist even for dev versions.
 
 # update database
-php artisan migrate --force
+php artisan migrate --database=mysql_migrator --force
 
-# --force  Required to run when in production.# stop maintenance mode
-php artisan up
+# --force  Required to run when in production. # stop maintenance mode
+php artisan up --force
