@@ -165,6 +165,8 @@ return [
 		/*
 		 * Package Service Providers...
 		 */
+		OwenIt\Auditing\AuditingServiceProvider::class,
+		\SocialiteProviders\Manager\ServiceProvider::class,
 
 		/*
 		 * Application Service Providers...
