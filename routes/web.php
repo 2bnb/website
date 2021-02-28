@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,16 +15,15 @@
 |
 */
 
-// until the front end exists these are useful for testing
-// TODO: remove after testing
-Route::resources([
-    'users' => 'API\UserController',
-    'roles' => 'Auth\RoleController',
-    'permissions' => 'Auth\PermissionController',
-]);
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('login/discord', 'Auth\LoginController@redirectToProvider')->name('login');
-Route::get('login/discord/callback', 'Auth\LoginController@handleProviderCallback');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->name('dashboard');

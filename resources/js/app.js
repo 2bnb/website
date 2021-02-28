@@ -1,30 +1,27 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+require('./bootstrap');
 
-window.Vue = require('vue');
-import Vue from 'vue'
-import Vuetify from './plugins/vuetify' // path to vuetify export
-import App from './src/App'
+// Import modules...
+import Vue from 'vue';
+import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue';
+import PortalVue from 'portal-vue';
+import Vuetify from 'vuetify';
 
-const app = new Vue({
-	vuetify: Vuetify,
-	el: '#app',
-	components: {
-		App
-	},
-	render: h => h(App)
-});
+import 'vuetify/dist/vuetify.min.css';
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+Vue.mixin({ methods: { route } });
+Vue.use(InertiaPlugin);
+Vue.use(PortalVue);
+Vue.use(Vuetify);
 
-const files = require.context('./', true, /\.vue$/i)
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+const app = document.getElementById('app');
+
+new Vue({
+    vuetify: new Vuetify(),
+    render: (h) =>
+        h(InertiaApp, {
+            props: {
+                initialPage: JSON.parse(app.dataset.page),
+                resolveComponent: (name) => require(`./Pages/${name}`).default,
+            },
+        }),
+}).$mount(app);
